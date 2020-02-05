@@ -54,25 +54,35 @@ fun CalculaArea(
     var finalh= mutableListOf<Int>()
     var comienzoh= mutableListOf<Int>()
     for(i in listh.indices){
-        if(i==0 && listh[i+1]-listh[i]==1){
-            comienzoh.add(listh[i])
-        }else {
-            if (i != listh.size - 1 && listh[i + 1] - listh[i] == 1 && listh[i] - listh[i - 1] != 1) {
-                comienzoh.add(listh[i])
+        if(listh.size!=1){
+            if(i!=listh.size-1){
+                if(i==0 && listh[i+1]-listh[i]==1){
+                    comienzoh.add(listh[i])
+                }else {
+                    if ( listh[i + 1] - listh[i] == 1 && listh[i] - listh[i - 1] != 1) {
+                        comienzoh.add(listh[i])
+                    }
+                }
+
+            }
+
+
+            // de los intervalos de numeros que son seguidos, tomo el final del intervalo
+
+            if(i!= listh.size-1){
+                if(i!=0 && listh[i]-listh[i-1]==1 && listh[i+1]-listh[i]!=1 ){
+                    finalh.add(listh[i])
+                }
+
+            }else {
+                if (i == listh.size-1 && listh[i] - listh[i-1] == 1) {
+                    finalh.add(listh[i])
+                }
             }
         }
-
-        // de los intervalos de numeros que son seguidos, tomo el final del intervalo
-
-        if(i!= listh.size-1){
-            if(i!=0 && listh[i]-listh[i-1]==1 && listh[i+1]-listh[i]!=1 ){
-                finalh.add(listh[i])
-            }
-
-        }else {
-            if (i == listh.size-1 && listh[i] - listh[i-1] == 1) {
-                finalh.add(listh[i])
-            }
+        if(listh.size==1){
+            finalh.add(listh[i])
+            comienzoh.add(listh[i])
         }
 
     }
@@ -80,44 +90,50 @@ fun CalculaArea(
     var resultadoh= mutableListOf<Int>()
     var x=0
     for(i in finalh.indices){
-        resultadoh.add(finalh[i]-comienzoh[i])
-
-        if(i!=0&&resultadoh[i]>resultadoh[i-1]){
-            x=resultadoh[i]
-        }else{
-            if(i==0){
-                x=resultadoh[i]
-            }
-        }
+            resultadoh.add(finalh[i]-comienzoh[i])
 
     }
+    for (ii in resultadoh.indices){
+        if(resultadoh[ii]>x){
+            x=resultadoh[ii]
+        }
+    }
+
     println("barrotes horizontales: $listh")
     println("barrotes de comienzo $comienzoh")
     println("barrotes de final $finalh")
-    println(x)
+    println("Mayor numero de barrotes horizontales que se quitan ${x+1}")
     // de los intervalos de barrotes verticales que son seguidos, tomo el comienzo del intervalo
     var finalv= mutableListOf<Int>()
     var comienzov= mutableListOf<Int>()
     for(i in listv.indices){
-        if(i==0 && listv[i+1]-listv[i]==1){
-            comienzov.add(listv[i])
-        }else {
-            if (i != listv.size - 1 && listv[i + 1] - listv[i] == 1 && listv[i] - listv[i - 1] != 1) {
-                comienzov.add(listv[i])
+        if(listv.size!=1){
+            if(i!=listv.size-1){
+                if(i==0 && listv[i+1]-listv[i]==1){
+                    comienzov.add(listv[i])
+                }else {
+                    if (listv[i + 1] - listv[i] == 1 && listv[i] - listv[i - 1] != 1) {
+                        comienzov.add(listv[i])
+                    }
+                }
+            }
+
+
+            // de los intervalos de numeros que son seguidos, tomo el final del intervalo
+
+            if(i!= listv.size-1){
+                if(i!=0 && listv[i]-listv[i-1]==1 && listv[i+1]-listv[i]!=1 ){
+                    finalv.add(listv[i])
+                }
+
+            }else {
+                if (i == listv.size-1 && listv[i] - listv[i-1] == 1) {
+                    finalv.add(listv[i])
+                }
             }
         }
-
-        // de los intervalos de numeros que son seguidos, tomo el final del intervalo
-
-        if(i!= listv.size-1){
-            if(i!=0 && listv[i]-listv[i-1]==1 && listv[i+1]-listv[i]!=1 ){
-                finalv.add(listv[i])
-            }
-
-        }else {
-            if (i == listv.size-1 && listv[i] - listv[i-1] == 1) {
-                finalv.add(listv[i])
-            }
+        if(listv.size==1){
+            finalv.add(listv[i])
         }
 
     }
@@ -125,22 +141,25 @@ fun CalculaArea(
     var resultadov= mutableListOf<Int>()
     var y=0
     for(i in finalv.indices){
-        resultadov.add(finalv[i]-comienzov[i])
-
-        if(i!=0&&resultadov[i]>resultadov[i-1]){
-            y=resultadov[i]
-        }else{
-            if(i==0){
-                y=resultadov[i]
-            }
-        }
+            resultadov.add(finalh[i])
+            resultadov.add(comienzoh[i])
 
     }
+
+    for (ii in resultadov.indices){
+        if(resultadov[ii]>y){
+            y=resultadov[ii]
+        }
+    }
+
 
     println("barrotes verticales: $listv")
     println("barrotes de comienzov $comienzov")
     println("barrotes de finalv $finalv")
-    println("Nuemero mas grande de barrotes verticales seguidos $y")
+    println("Mayor numero de barrotes verticales que se quitan ${y+1}")
+    println("El resultado el area mas grande que se crea es de ${(x+2)*(y+2)}")
+
+
 
 
 

@@ -1,6 +1,6 @@
 # AlgoritmoProblemaPrisionero
 
-Este codigo es la solución en kotlin a un problema que se me solicito como parte de un examen para ingresar a una compañia.
+Este codigo es la solución en kotlin a un problema que se me solicito.
 Para solucionarlo se me dio 90 miutos.
 
 El problema consiste en un prisionero que se encuentra en una carcel donde la puerta de la celda son unos barrotes horizontales y verticales, 
